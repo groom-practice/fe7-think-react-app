@@ -1,0 +1,73 @@
+/* Light Theme */
+body .light,
+#root .light {
+  color: #213547;
+  background-color: #ffffff;
+}
+
+.light button {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  color: #213547;
+}
+
+.light button:hover {
+  border-color: #646cff;
+}
+
+.light input,
+.light select {
+  background-color: #ffffff;
+  color: #213547;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.light table {
+  color: #213547;
+}
+
+/* Dark Theme */
+body .dark,
+#root .dark {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+.dark button {
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.dark button:hover {
+  border-color: #646cff;
+}
+
+.dark input,
+.dark select {
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.87);
+  border: 1px solid #444;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.dark table {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.dark table th {
+  border-bottom: 1px solid #444;
+}
+
+/* 공통 스타일 */
+button {
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
