@@ -31,6 +31,7 @@ export default function ProductTable({products, filterText, inStockOnly}) {
         <tr>
           <th>Name</th>
           <th>Price</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>

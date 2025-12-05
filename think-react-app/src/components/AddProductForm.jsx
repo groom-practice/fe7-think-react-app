@@ -44,7 +44,7 @@ export default function AddProductForm({onAddProduct}) {
       <select value={state.price} onChange={handleOnChange} name="price">
         {
           Array.from({length: 5}, (_, index) => (
-            <option value={`$${index + 1}`}>${index + 1}</option>
+            <option key={index} value={`$${index + 1}`}>${index + 1}</option>
           ))
         }
       </select>
