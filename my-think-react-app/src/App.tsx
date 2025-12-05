@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import "./App.css";
 import AddItemForm from "./components/AddItemForm";
 import FilterableProductTable from "./components/FilterableProductTable";
@@ -26,16 +26,26 @@ function App() {
   const [isStocked, setIsStocked] = useState(false);
 
   // 상품 추가 함수
-  function handleAddProduct(newProduct: ProductType) {
-    const selectedProduct = products.filter(
-      (product) => product.category === newProduct.category
-    );
-    const unSelectedProduct = products.filter(
-      (product) => product.category !== newProduct.category
-    );
-    selectedProduct.push(newProduct);
-    setProducts([...selectedProduct, ...unSelectedProduct]);
-  }
+  const handleAddProduct = useCallback(
+    (newProduct: ProductType) => {
+      const selectedProduct = products.filter(
+        (product) => product.category === newProduct.category
+      );
+      const unSelectedProduct = products.filter(
+        (product) => product.category !== newProduct.category
+      );
+      selectedProduct.push(newProduct);
+
+      // Fruits가 항상 앞에 오도록 정렬
+      const joinProducts = [...selectedProduct, ...unSelectedProduct];
+      const sortProducts = [
+        ...joinProducts.filter((product) => product.category === "Fruits"),
+        ...joinProducts.filter((product) => product.category !== "Fruits"),
+      ];
+      setProducts(sortProducts);
+    },
+    [products]
+  );
 
   // 상품 제거 함수
   function handleDelteProduct(name: string) {
