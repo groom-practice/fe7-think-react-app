@@ -4,14 +4,21 @@ import ProductRow from "./ProductRow"
 export default function ProductTable({
   products,
   filterText,
-  isStockOnly,
+  inStockOnly,
   onFilterTextChange,
-  onIsStockOnlyChange,
+  onInStockOnlyChange,
+  onDelete,
 }) {
   const rows = []
   let lastCategory = null
 
   products.forEach((product) => {
+    if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
+      return
+    }
+
+    if (inStockOnly && !product.stocked) return
+
     if (product.category !== lastCategory) {
       rows.push(
         <ProductCategoryRow
@@ -19,12 +26,16 @@ export default function ProductTable({
           key={product.category + product.price}
         />
       )
-      lastCategory = product.category
     }
 
     rows.push(
-      <ProductRow product={product} key={product.name + product.price} />
+      <ProductRow
+        product={product}
+        key={product.name + product.price}
+        onDelete={onDelete}
+      />
     )
+    lastCategory = product.category
   })
 
   return (
@@ -33,6 +44,7 @@ export default function ProductTable({
         <tr>
           <th>Name</th>
           <th>Price</th>
+          <th>Action</th>
         </tr>
       </thead>
 
